@@ -12,6 +12,7 @@
 MainComponent::MainComponent()
 {
     setSize (600, 400);
+	addAndMakeVisible(unifox);
 }
 
 MainComponent::~MainComponent()
@@ -22,11 +23,9 @@ MainComponent::~MainComponent()
 void MainComponent::paint (Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
+    g.fillAll (Colour(13,13,13));
+	unifox.setBounds(0,0,getWidth(),getHeight());
 
-    g.setFont (Font (76.0f));
-    g.setColour (Colours::orange);
-    g.drawText ("Unifox", getLocalBounds(), Justification::centredTop, true);
 }
 
 void MainComponent::resized()
