@@ -1,4 +1,5 @@
 /*
+ *
   ==============================================================================
 
     Caisno.h
@@ -48,21 +49,27 @@ public:
 			delete cap_text_label;
 			delete coin_label;
 			delete coin_text_label;
-	
+			Menu();	
 	}
-	
 	void ShowDebt();
 	void SetBase();
+								
 
 private:
 	Label *capital_label; //자본
-	Label revenue_label; //수익
-	Label debt_label;    //부채
 	Label *coin_label;    //코인
 	Label *cap_text_label;
 	Label *coin_text_label;
 	TextButton *check_init;
 
+	Label *menu1_label;
+	Label *menu2_label;
+	Label *menu3_label;
+	Label revenue_label; //수익
+	Label debt_label;    //부채
+	
+	
+	void Menu();	
 	void AutoSave();
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Casino)
 };
