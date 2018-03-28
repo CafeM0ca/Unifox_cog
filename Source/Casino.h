@@ -32,12 +32,15 @@ public:
 		if(label == cap_text_label)
 		{
 			cap_text_label->setText(cap_text_label->getText(),dontSendNotification);
+			cap_text_label->removeListener(this);
+			//Value v = cap_text_label->getTextValue();
+
 	
 		}
-		
 		else if(label == coin_text_label)
 		{
-			coin_text_label->setText(coin_label->getText(),dontSendNotification);
+			coin_text_label->setText(coin_text_label->getText(),dontSendNotification);
+			coin_text_label->removeListener(this);
 		}
 		
 	}
@@ -45,30 +48,31 @@ public:
 	void buttonClicked (Button *button) override
 	{
 			delete check_init;
-			delete capital_label;
-			delete cap_text_label;
+			check_init = nullptr;
 			delete coin_label;
-			delete coin_text_label;
+			coin_label = nullptr;
 			Menu();	
 	}
 	void ShowDebt();
 	void SetBase();
-								
-
 private:
+	//SetBase
 	Label *capital_label; //자본
 	Label *coin_label;    //코인
 	Label *cap_text_label;
 	Label *coin_text_label;
 	TextButton *check_init;
 
-	Label *menu1_label;
-	Label *menu2_label;
-	Label *menu3_label;
-	Label revenue_label; //수익
-	Label debt_label;    //부채
+	//Menu
+	Label *price_label;
+	Label *revenue_label; //수익
+	Label *debt_label;    //부채
+	Label *cur_coin_label, *sold_coin_label; 		
 	
-	
+	unsigned short coin;
+	short debt;
+	short revenue;
+
 	void Menu();	
 	void AutoSave();
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Casino)
