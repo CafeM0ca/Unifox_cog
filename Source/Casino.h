@@ -31,16 +31,20 @@ public:
 		
 		if(label == cap_text_label)
 		{
-			cap_text_label->setText(cap_text_label->getText(),dontSendNotification);
+			String str = cap_text_label->getText();
+			cap_text_label->setText(str,dontSendNotification);
 			cap_text_label->removeListener(this);
+			capital = ConvertToInt(str);			
 			//Value v = cap_text_label->getTextValue();
 
 	
 		}
 		else if(label == coin_text_label)
 		{
-			coin_text_label->setText(coin_text_label->getText(),dontSendNotification);
+			String str = cap_text_label->getText();
+			coin_text_label->setText(str,dontSendNotification);
 			coin_text_label->removeListener(this);
+			coin = ConvertToInt(str);
 		}
 		
 	}
@@ -51,6 +55,10 @@ public:
 			check_init = nullptr;
 			delete coin_label;
 			coin_label = nullptr;
+			delete coin_text_label;
+			coin_text_label = nullptr;
+			delete cap_text_label;
+			cap_text_label = nullptr;
 			Menu();	
 	}
 	void ShowDebt();
@@ -69,11 +77,12 @@ private:
 	Label *debt_label;    //부채
 	Label *cur_coin_label, *sold_coin_label; 		
 	
-	unsigned short coin;
-	short debt;
-	short revenue;
-
+	int coin;
+	int debt;
+	int revenue;
+	int capital;
 	void Menu();	
 	void AutoSave();
+	int ConvertToInt(String &s1) const;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Casino)
 };

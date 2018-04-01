@@ -2,8 +2,7 @@
   ==============================================================================
 
     Casino.cpp
-    Created: 24 Mar 2018 11:20:14pm
-    Author:  moca
+    Created: 24 Mar 2018 11:20:14pm Author:  moca
 
   ==============================================================================
 */
@@ -84,7 +83,7 @@ void Casino::SetBase()
 	coin_text_label = new Label;
 	addAndMakeVisible(coin_label);
 	coin_label->setFont(Font(20.0f,Font::bold));
-	coin_label->setText("init chip: ",dontSendNotification);
+	coin_label->setText("init coin: ",dontSendNotification);
 	coin_label->attachToComponent(coin_text_label,true);
 	coin_label->setColour(Label::textColourId,Colours::orange);
 	coin_label->setJustificationType(Justification::centredLeft);
@@ -121,10 +120,10 @@ void Casino::Menu()
 	cur_coin_label->setJustificationType(Justification::topLeft);
 	cur_coin_label->setBounds(0,100,120,30);
 		
-	coin_text_label->setFont(Font(20.0f,Font::bold));
-	coin_text_label->setColour(Label::textColourId,Colours::white);
-	coin_text_label->setJustificationType(Justification::centredRight);
-	coin_text_label->setBounds(120,100,30,30);
+//	coin_text_label->setFont(Font(20.0f,Font::bold));
+//	coin_text_label->setColour(Label::textColourId,Colours::white);
+//	coin_text_label->setJustificationType(Justification::centredRight);
+//	coin_text_label->setBounds(120,100,30,30);
 
 	sold_coin_label = new Label;
 	addAndMakeVisible(sold_coin_label);
@@ -135,6 +134,7 @@ void Casino::Menu()
 	sold_coin_label->setBounds(0,130,120,30);
 	
 		
+	
 	capital_label = new Label;
 	addAndMakeVisible(capital_label);
 	capital_label->setFont(Font(20.0f,Font::bold));
@@ -142,6 +142,7 @@ void Casino::Menu()
 	capital_label->setColour(Label::textColourId,Colours::orange);
 	capital_label->setJustificationType(Justification::topLeft);
 	capital_label->setBounds(0,160,120,30);
+	
 
 	revenue_label = new Label;
 	addAndMakeVisible(revenue_label);
@@ -160,4 +161,18 @@ void Casino::Menu()
 	debt_label->setBounds(0,220,120,30);
 
 	
+}
+
+int Casino::ConvertToInt(String &s) const
+{
+	int k=1;
+	int result=0;
+	for(int i=0;s[i]!='\0';i++)
+	{
+		
+		result += ((s[i]-48)*k);	
+		k*=10;
+	}
+	
+	return result;
 }
