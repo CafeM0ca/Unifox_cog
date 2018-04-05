@@ -31,20 +31,20 @@ public:
 		
 		if(label == cap_text_label)
 		{
-			String str = cap_text_label->getText();
-			cap_text_label->setText(str,dontSendNotification);
+			cap_string = cap_text_label->getText();
+			cap_text_label->setText(cap_text_label->getText(),dontSendNotification);
 			cap_text_label->removeListener(this);
-			capital = ConvertToInt(str);			
+			capital = ConvertToInt(cap_string);			
 			//Value v = cap_text_label->getTextValue();
 
 	
 		}
 		else if(label == coin_text_label)
 		{
-			String str = cap_text_label->getText();
-			coin_text_label->setText(str,dontSendNotification);
+			coin_string = coin_text_label->getText();
+			coin_text_label->setText(coin_text_label->getText(),dontSendNotification);
 			coin_text_label->removeListener(this);
-			coin = ConvertToInt(str);
+			coin = ConvertToInt(coin_string);
 		}
 		
 	}
@@ -69,14 +69,15 @@ private:
 	Label *coin_label;    //코인
 	Label *cap_text_label;
 	Label *coin_text_label;
-	TextButton *check_init;
-
+	TextButton *check_init; 
 	//Menu
 	Label *price_label;
 	Label *revenue_label; //수익
 	Label *debt_label;    //부채
 	Label *cur_coin_label, *sold_coin_label; 		
-	
+
+	String cap_string;
+	String coin_string;
 	int coin;
 	int debt;
 	int revenue;

@@ -47,6 +47,12 @@ void Casino::paint (Graphics& g)
     g.setColour (Colours::orange);
     g.drawText ("Unifox", getLocalBounds(), Justification::centredTop, true);
 
+	g.setColour (Colours::white);
+	g.setFont(Font(16.0f,Font::bold));
+	g.drawText(cap_string,100,160,20,30,false);
+	g.drawText(cap_string,100,160,20,30,false);
+
+	//g.drawText()
 }
 
 void Casino::resized()
@@ -159,8 +165,6 @@ void Casino::Menu()
 	debt_label->setColour(Label::textColourId,Colours::orange);
 	debt_label->setJustificationType(Justification::topLeft);
 	debt_label->setBounds(0,220,120,30);
-
-	
 }
 
 int Casino::ConvertToInt(String &s) const
