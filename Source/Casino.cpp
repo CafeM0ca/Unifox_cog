@@ -49,8 +49,8 @@ void Casino::paint (Graphics& g)
 
 	g.setColour (Colours::white);
 	g.setFont(Font(16.0f,Font::bold));
-	g.drawText(cap_string,100,160,20,30,false);
-	g.drawText(cap_string,100,160,20,30,false);
+	g.drawSingleLineText(coin_string,120,115);
+	g.drawSingleLineText(cap_string,80,175);
 
 	//g.drawText()
 }
@@ -123,8 +123,8 @@ void Casino::Menu()
 	cur_coin_label->setFont(Font(20.0f,Font::bold));
 	cur_coin_label->setText("Current coin: ",dontSendNotification);
 	cur_coin_label->setColour(Label::textColourId,Colours::orange);
-	cur_coin_label->setJustificationType(Justification::topLeft);
-	cur_coin_label->setBounds(0,100,120,30);
+	cur_coin_label->setJustificationType(Justification::left);
+	cur_coin_label->setBounds(0,100,120,20);
 		
 //	coin_text_label->setFont(Font(20.0f,Font::bold));
 //	coin_text_label->setColour(Label::textColourId,Colours::white);
@@ -136,8 +136,8 @@ void Casino::Menu()
 	sold_coin_label->setFont(Font(20.0f,Font::bold));
 	sold_coin_label->setText("Sold coin:",dontSendNotification);
 	sold_coin_label->setColour(Label::textColourId,Colours::orange);
-	sold_coin_label->setJustificationType(Justification::topLeft);
-	sold_coin_label->setBounds(0,130,120,30);
+	sold_coin_label->setJustificationType(Justification::left);
+	sold_coin_label->setBounds(0,130,120,20);
 	
 		
 	
@@ -146,8 +146,8 @@ void Casino::Menu()
 	capital_label->setFont(Font(20.0f,Font::bold));
 	capital_label->setText("capital:",dontSendNotification);
 	capital_label->setColour(Label::textColourId,Colours::orange);
-	capital_label->setJustificationType(Justification::topLeft);
-	capital_label->setBounds(0,160,120,30);
+	capital_label->setJustificationType(Justification::left);
+	capital_label->setBounds(0,160,120,20);
 	
 
 	revenue_label = new Label;
@@ -155,28 +155,16 @@ void Casino::Menu()
 	revenue_label->setFont(Font(20.0f,Font::bold));
 	revenue_label->setText("revenue:",dontSendNotification);
 	revenue_label->setColour(Label::textColourId,Colours::orange);
-	revenue_label->setJustificationType(Justification::topLeft);
-	revenue_label->setBounds(0,190,120,30);
+	revenue_label->setJustificationType(Justification::left);
+	revenue_label->setBounds(0,190,120,20);
 
 	debt_label = new Label;
 	addAndMakeVisible(debt_label);
 	debt_label->setFont(Font(20.0f,Font::bold));
 	debt_label->setText("debt:",dontSendNotification);
 	debt_label->setColour(Label::textColourId,Colours::orange);
-	debt_label->setJustificationType(Justification::topLeft);
-	debt_label->setBounds(0,220,120,30);
+	debt_label->setJustificationType(Justification::left);
+	debt_label->setBounds(0,220,120,20);
 }
 
-int Casino::ConvertToInt(String &s) const
-{
-	int k=1;
-	int result=0;
-	for(int i=0;s[i]!='\0';i++)
-	{
-		
-		result += ((s[i]-48)*k);	
-		k*=10;
-	}
-	
-	return result;
-}
+

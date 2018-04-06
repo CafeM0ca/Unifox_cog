@@ -34,9 +34,7 @@ public:
 			cap_string = cap_text_label->getText();
 			cap_text_label->setText(cap_text_label->getText(),dontSendNotification);
 			cap_text_label->removeListener(this);
-			capital = ConvertToInt(cap_string);			
-			//Value v = cap_text_label->getTextValue();
-
+			capital = cap_string.getIntValue();
 	
 		}
 		else if(label == coin_text_label)
@@ -44,7 +42,7 @@ public:
 			coin_string = coin_text_label->getText();
 			coin_text_label->setText(coin_text_label->getText(),dontSendNotification);
 			coin_text_label->removeListener(this);
-			coin = ConvertToInt(coin_string);
+			coin = coin_string.getIntValue();
 		}
 		
 	}
@@ -57,6 +55,8 @@ public:
 			coin_label = nullptr;
 			delete coin_text_label;
 			coin_text_label = nullptr;
+			delete capital_label;
+			capital_label = nullptr;
 			delete cap_text_label;
 			cap_text_label = nullptr;
 			Menu();	
@@ -75,15 +75,12 @@ private:
 	Label *revenue_label; //수익
 	Label *debt_label;    //부채
 	Label *cur_coin_label, *sold_coin_label; 		
-
-	String cap_string;
 	String coin_string;
+	String cap_string;
 	int coin;
 	int debt;
 	int revenue;
 	int capital;
 	void Menu();	
-	void AutoSave();
-	int ConvertToInt(String &s1) const;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Casino)
 };
