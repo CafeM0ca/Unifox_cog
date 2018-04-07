@@ -25,57 +25,9 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
-	void labelTextChanged(Label *label) override
-	{
-		
-		if(label == cap_text_label)
-		{
-			cap_string = cap_text_label->getText();
-			cap_text_label->setText(cap_text_label->getText(),dontSendNotification);
-			cap_text_label->removeListener(this);
-			capital = cap_string.getIntValue();
-	
-		}
-		else if(label == coin_text_label)
-		{
-			coin_string = coin_text_label->getText();
-			coin_text_label->setText(coin_text_label->getText(),dontSendNotification);
-			coin_text_label->removeListener(this);
-			coin = coin_string.getIntValue();
-		}
-		
-	}
+	void labelTextChanged(Label *label) override;
+	void buttonClicked (Button *button) override;
 
-	void buttonClicked (Button *button) override
-	{
-		if(button == check_init )
-		{
-			delete check_init;
-			check_init = nullptr;
-			delete coin_label;
-			coin_label = nullptr;
-			delete coin_text_label;
-			coin_text_label = nullptr;
-			delete capital_label;
-			capital_label = nullptr;
-			delete cap_text_label;
-			cap_text_label = nullptr;
-			Menu();	
-		}	
-		else if(button == buy_txtbtn)
-		{
-			BuyCoin();
-		}
-		else if(button == sell_txtbtn)
-		{
-			// sell
-		}
-	}
-
-	void comboBoxChanged(ComboBox *combobox) //When ComboBox selected
-	{
-										
-	}
 private:
 	//SetBase
 	Label *capital_label; //자본
@@ -89,19 +41,24 @@ private:
 	Label *debt_label;    //부채
 	Label *cur_coin_label, *sold_coin_label; 		
 	ComboBox *coin_menu;
+	ComboBox *coin_collector;
 	//BuyCoin
 	TextButton *buy_txtbtn;
 	TextButton *sell_txtbtn;
-	
+	TextButton *collect_txtbtn;	
 	String coin_string;
 	String cap_string;
-	String sold_coin_string;
 	int coin;
+	int sold_coin;
 	int debt;
 	int revenue;
 	int capital;
+	bool init_check;
 	void Menu();	
 	void SetBase();
-	bool BuyCoin();
+	void BuyCoin();
+	void SellCoin();
+	void CollectCoin();
+	void CheckStatus();
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Casino)
 };
