@@ -16,6 +16,7 @@ Casino::Casino() :capital_label(nullptr),coin_label(nullptr),cap_text_label(null
 	// 장부 확인
 	// 없으면 만들고 있으면 불러옴
 	SetBase();
+
 }
 
 Casino::~Casino()
@@ -30,18 +31,10 @@ Casino::~Casino()
 	if(debt_label != nullptr) delete debt_label;
 	if(cur_coin_label != nullptr) delete cur_coin_label;
 	if(sold_coin_label != nullptr) delete sold_coin_label;
-
-
 }
 
 void Casino::paint (Graphics& g)
 {
-    /* This demo code just fills the component's background and
-       draws some placeholder text to get you started.
-
-       You should replace everything in this method with your own
-       drawing code..
-    */
 
     g.setFont (Font (76.0f));
     g.setColour (Colours::orange);
@@ -51,7 +44,7 @@ void Casino::paint (Graphics& g)
 	g.setFont(Font(16.0f,Font::bold));
 	g.drawSingleLineText(coin_string,120,115);
 	g.drawSingleLineText(cap_string,80,175);
-
+	DBG("paint call");
 	//g.drawText()
 }
 
@@ -118,8 +111,7 @@ void Casino::Menu()
 	price_label->setJustificationType(Justification::centredRight);
 	price_label->setBounds(0,50,getWidth(),getHeight()-50);
 				
-	cur_coin_label = new Label;
-	addAndMakeVisible(cur_coin_label);
+	cur_coin_label = new Label; addAndMakeVisible(cur_coin_label);
 	cur_coin_label->setFont(Font(20.0f,Font::bold));
 	cur_coin_label->setText("Current coin: ",dontSendNotification);
 	cur_coin_label->setColour(Label::textColourId,Colours::orange);
@@ -165,6 +157,50 @@ void Casino::Menu()
 	debt_label->setColour(Label::textColourId,Colours::orange);
 	debt_label->setJustificationType(Justification::left);
 	debt_label->setBounds(0,220,120,20);
+	
+
+	//Buy coin!
+	buy_txtbtn = new TextButton;
+	addAndMakeVisible(buy_txtbtn);
+	setColour(TextButton::buttonColourId,Colours::orange);
+	buy_txtbtn->setButtonText("Buy Coin");
+	buy_txtbtn->setBounds(0,getHeight()-30,70,30);
+	buy_txtbtn->addListener(this);
+
+	sell_txtbtn = new TextButton;
+	addAndMakeVisible(sell_txtbtn);
+	setColour(TextButton::buttonColourId,Colours::orange);
+	sell_txtbtn->setButtonText("Sell Coin");
+	sell_txtbtn->setBounds(70,getHeight()-30,70,30);
+	sell_txtbtn->addListener(this);
+
+	coin_menu = new ComboBox;
+	addAndMakeVisible(coin_menu);
+	coin_menu->setBounds(0,250,200,20);
+	coin_menu->addSectionHeading("default");
+	coin_menu->addItem("Non selected",1);
+	coin_menu->addSectionHeading("Buy");
+	coin_menu->addItem("5 coin / 1000won",2);
+	coin_menu->addItem("10 coin / 2000won",3);
+	coin_menu->addItem("15 coin / 3000won",4);
+	coin_menu->addItem("25 coin / 5000won",5);
+	coin_menu->addSectionHeading("Sell");
+	coin_menu->addItem("6 coin / 1000won",6);
+	coin_menu->addItem("11 coin / 2000won",7);
+	coin_menu->addItem("17 coin / 3000won",8);
+	coin_menu->addItem("29 coin / 5000won",9);
+
+
 }
 
+bool Casino::BuyCoin()
+{
+	/*
+	switch(coin_menu->getSelectedId()) // buy 2~5
+	{
+		default:
+	}
+	*/
+
+}
 

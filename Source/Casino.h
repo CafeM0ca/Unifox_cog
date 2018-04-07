@@ -1,5 +1,4 @@
-/*
- *
+/* 
   ==============================================================================
 
     Caisno.h
@@ -49,6 +48,8 @@ public:
 
 	void buttonClicked (Button *button) override
 	{
+		if(button == check_init )
+		{
 			delete check_init;
 			check_init = nullptr;
 			delete coin_label;
@@ -60,9 +61,21 @@ public:
 			delete cap_text_label;
 			cap_text_label = nullptr;
 			Menu();	
+		}	
+		else if(button == buy_txtbtn)
+		{
+			BuyCoin();
+		}
+		else if(button == sell_txtbtn)
+		{
+			// sell
+		}
 	}
-	void ShowDebt();
-	void SetBase();
+
+	void comboBoxChanged(ComboBox *combobox) //When ComboBox selected
+	{
+										
+	}
 private:
 	//SetBase
 	Label *capital_label; //자본
@@ -75,12 +88,20 @@ private:
 	Label *revenue_label; //수익
 	Label *debt_label;    //부채
 	Label *cur_coin_label, *sold_coin_label; 		
+	ComboBox *coin_menu;
+	//BuyCoin
+	TextButton *buy_txtbtn;
+	TextButton *sell_txtbtn;
+	
 	String coin_string;
 	String cap_string;
+	String sold_coin_string;
 	int coin;
 	int debt;
 	int revenue;
 	int capital;
 	void Menu();	
+	void SetBase();
+	bool BuyCoin();
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Casino)
 };
