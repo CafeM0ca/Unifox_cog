@@ -2,56 +2,58 @@
   ==============================================================================
 
     Casino.cpp
-    Created: 24 Mar 2018 11:20:14pm Author:  moca
-
-  ==============================================================================
-*/
-
-#include "../JuceLibraryCode/JuceHeader.h"
+    Created: 24 Mar 2018 11:20:14pm Author:  moca 
+  ============================================================================== */
+#include "../JuceLibraryCode/JuceHeader.h" 
 #include "Casino.h"
-
 //==============================================================================
 Casino::Casino() 
-	:capital_label(nullptr),
-	coin_label(nullptr),
-	cap_text_label(nullptr),
+	:capital_label(nullptr) ,
+	coin_label(nullptr)     ,
+	cap_text_label(nullptr) ,
 	coin_text_label(nullptr),
-	check_init(nullptr),
-	price_label(nullptr),
-	revenue_label(nullptr),
-	debt_label(nullptr),
-	cur_coin_label(nullptr),
+	check_init(nullptr)     ,
+	price_label(nullptr)    ,
+	revenue_label(nullptr)  ,
+	debt_label(nullptr)     ,
+	cur_coin_label(nullptr) ,
 	sold_coin_label(nullptr),
-	coin_menu(nullptr),
-	coin_collector(nullptr),
-	buy_txtbtn(nullptr),
-	sell_txtbtn(nullptr),
-	collect_txtbtn(nullptr),
-	coin(0),
-	sold_coin(0),
-	debt(0),
-	revenue(0),
-	capital(0),
+	coin_menu(nullptr)      ,
+	coin_collector(nullptr) ,
+	buy_txtbtn(nullptr)     ,
+	sell_txtbtn(nullptr)    ,
+	collect_txtbtn(nullptr) ,
+	coin(0)                 ,
+	sold_coin(0)            ,
+	debt(0)                 ,
+	revenue(0)              ,
+	capital(0)              ,
 	init_check(false)
 {
 	// 장부 확인
 	// 없으면 만들고 있으면 불러옴
+	/*
+	if(AutoSave())
+	{
+	}
+	*/
+
 	SetBase();
 
 }
 
 Casino::~Casino()
 {
-	/* 나중에 종료직전에 
+// 나중에 종료직전에 
 	cap_text_label->removeListener(this);
 	coin_text_label->removeListener(this);
 	check_init->removeListener(this);
 	buy_txtbtn->removeListener(this);
 	sell_txtbtn->removeListener(this);
 	collect_txtbtn->removeListener(this);
-	coin_menu->removeListener(this);	
-	coin_collector->removeListener(this);
-	*/
+//	coin_menu->removeListener(this);	
+//	coin_collector->removeListener(this);
+	
 	if(check_init != nullptr) delete check_init;
 	if(capital_label != nullptr) delete capital_label;
 	if(cap_text_label != nullptr) delete cap_text_label;
@@ -66,6 +68,7 @@ Casino::~Casino()
 	if(sell_txtbtn != nullptr) delete sell_txtbtn;
 	if(coin_menu != nullptr) delete coin_menu;
 	if(coin_collector != nullptr) delete coin_collector;
+	if(collect_txtbtn != nullptr) delete collect_txtbtn;
 }
 
 void Casino::paint (Graphics& g)
@@ -445,4 +448,21 @@ void Casino::CheckStatus()
 				coin_menu->setItemEnabled(6,false);
 		}
 	}
+}
+
+int Casino::AutoSave()
+{
+	/*
+	ifstream in = ("cog.txt"); //파일 읽기
+	if(in.open())
+	{
+		DBG("파일이 있다.");	
+		return 1;
+	}
+	else
+	{
+		DBG("파일이 없다.");
+		return 0;
+	}
+	*/
 }

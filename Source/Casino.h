@@ -60,5 +60,11 @@ private:
 	void SellCoin();
 	void CollectCoin();
 	void CheckStatus();
+	int AutoSave();	
+	enum class SaveError : int
+	{
+		complete,
+			
+	};
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Casino)
 };
