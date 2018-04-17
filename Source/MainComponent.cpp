@@ -11,7 +11,7 @@
 //==============================================================================
 MainComponent::MainComponent()
 {
-    setSize (600, 400);
+    setSize (600, 400); //크기는 냅둘 것
 	addAndMakeVisible(unifox);
 }
 

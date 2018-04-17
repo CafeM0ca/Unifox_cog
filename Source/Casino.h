@@ -46,8 +46,8 @@ private:
 	TextButton *buy_txtbtn;
 	TextButton *sell_txtbtn;
 	TextButton *collect_txtbtn;	
-	String coin_string;
-	String cap_string;
+	String coin_string; //레이블에서 입력받은값 Int로 바꾸기위해
+	String cap_string; //레이블에서 입력받은값 Int로 바꾸기위해
 	int coin;
 	int sold_coin;
 	int sales;
@@ -61,11 +61,5 @@ private:
 	void SellCoin();
 	void CollectCoin();
 	void CheckStatus();
-	int AutoSave();	
-	enum class SaveError : int
-	{
-		complete,
-			
-	};
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Casino)
 };

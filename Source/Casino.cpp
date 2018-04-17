@@ -35,16 +35,7 @@ Casino::Casino()
 	init_check(false),
 	listener_check(false)
 {
-	// 장부 확인
-	// 없으면 만들고 있으면 불러옴
-	/*
-	if(AutoSave())
-	{
-	}
-	*/
-
 	SetBase();
-
 }
 
 Casino::~Casino()
@@ -208,7 +199,7 @@ void Casino::Menu()
 	price_label->setText("Buy Price : 5 coin per 1000won!\n5 coin : 1000won\n10 coin : 2000won\n15 coin : 3000won\n25 coin : 5000won\n\nSell Price : 6 coin per 1000won!\n6 coin : 1000won\n12 coin : 2000won\n18 coin : 3000won\n30 coin : 5000won",dontSendNotification);
 	price_label->setColour(Label::textColourId,Colours::pink);
 	price_label->setJustificationType(Justification::topRight);
-	price_label->setBounds(getWidth()/3,70,getWidth()-getWidth()/3,getHeight()-70);
+	price_label->setBounds(0,70,getWidth(),getHeight()-70);
 				
 	cur_coin_label = new Label; addAndMakeVisible(cur_coin_label);
 	cur_coin_label->setFont(Font(20.0f,Font::bold));
@@ -257,21 +248,21 @@ void Casino::Menu()
 	buy_txtbtn = new TextButton;
 	addAndMakeVisible(buy_txtbtn);
 	buy_txtbtn->setColour(TextButton::buttonColourId,Colours::red);
-	buy_txtbtn->setButtonText("Buy Coin");
+	buy_txtbtn->setButtonText("Buy");
 	buy_txtbtn->setBounds(0,getHeight()-30,70,30);
 	buy_txtbtn->addListener(this);
 
 	sell_txtbtn = new TextButton;
 	addAndMakeVisible(sell_txtbtn);
 	sell_txtbtn->setColour(TextButton::buttonColourId,Colours::green);
-	sell_txtbtn->setButtonText("Sell Coin");
+	sell_txtbtn->setButtonText("Sell");
 	sell_txtbtn->setBounds(70,getHeight()-30,70,30);
 	sell_txtbtn->addListener(this);
 
 	collect_txtbtn = new TextButton;
 	addAndMakeVisible(collect_txtbtn);
 	collect_txtbtn->setColour(TextButton::buttonColourId,Colours::blue);
-	collect_txtbtn->setButtonText("Collect Coin");
+	collect_txtbtn->setButtonText("Collect");
 	collect_txtbtn->setBounds(140,getHeight()-30,70,30);
 	collect_txtbtn->addListener(this);
 
@@ -280,6 +271,15 @@ void Casino::Menu()
 	coin_menu = new ComboBox;
 	addAndMakeVisible(coin_menu);
 	coin_menu->setBounds(0,250,170,20);
+	coin_menu->setColour(ComboBox::backgroundColourId,Colours::pink);
+	coin_menu->setColour(ComboBox::textColourId,Colours::black);
+	coin_menu->setColour(ComboBox::outlineColourId,Colours::orange);
+	/* popupmenu 작동안함 ㅠㅠ
+	coin_menu->setColour(PopupMenu::backgroundColourId,Colours::pink);
+	coin_menu->setColour(PopupMenu::textColourId,Colours::black);
+	coin_menu->setColour(PopupMenu::highlightedBackgroundColourId,Colours::blue);
+	coin_menu->setColour(PopupMenu::highlightedTextColourId,Colours::red);
+	*/
 	coin_menu->addItem("Buy/Sell coin",1);
 	coin_menu->addSectionHeading("Buy");
 	coin_menu->addItem("5 coin / 1000won",2);
@@ -295,6 +295,9 @@ void Casino::Menu()
 
 	coin_collector = new ComboBox("Leftover coin");
 	addAndMakeVisible(coin_collector);
+	coin_collector->setColour(ComboBox::backgroundColourId,Colours::black);
+	coin_collector->setColour(ComboBox::textColourId,Colours::pink);
+	coin_collector->setColour(ComboBox::outlineColourId,Colours::orange);
 	coin_collector->setBounds(170,250,170,20);
 	coin_collector->addSectionHeading("How Many Collect?");
 	coin_collector->addItem("Leftover coin",1);
