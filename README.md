@@ -8,3 +8,7 @@
 
 - 회계 장부지만 사실상 축제날 당일에만 쓰기 때문에 자동저장 기능은 넣으려다 뺐습니다. 
 
+#License
+* GPLv3,ISCL
+<HighSchool Festival Cog>
+Copyright (C) 2018 Jinyoung Kim 
