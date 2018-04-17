@@ -18,7 +18,7 @@ Casino::Casino()
 	//Menu
 	price_label(nullptr),
 	revenue_label(nullptr),
-	debt_label(nullptr),
+	sales_label(nullptr),
 	cur_coin_label(nullptr),
 	sold_coin_label(nullptr),
 	coin_menu(nullptr),
@@ -29,7 +29,7 @@ Casino::Casino()
 	collect_txtbtn(nullptr),
 	coin(0),
 	sold_coin(0),
-	debt(0),
+	sales(0),
 	revenue(0),
 	capital(0),
 	init_check(false),
@@ -69,7 +69,7 @@ Casino::~Casino()
 
 	if(price_label != nullptr) delete price_label;
 	if(revenue_label != nullptr) delete revenue_label;
-	if(debt_label != nullptr) delete debt_label;
+	if(sales_label != nullptr) delete sales_label;
 	if(cur_coin_label != nullptr) delete cur_coin_label;
 	if(sold_coin_label != nullptr) delete sold_coin_label;
 
@@ -82,18 +82,21 @@ Casino::~Casino()
 
 void Casino::paint (Graphics& g)
 {
-    g.setFont (Font (76.0f));
+    g.setFont (Font (40.0f,Font::bold));
     g.setColour (Colours::orange);
-    g.drawText ("Unifox", getLocalBounds(), Justification::centredTop, true);
+    g.drawText ("Unifox Festival Cog Program", getLocalBounds(), Justification::centredTop, true);
+	g.setFont (Font (16.0f));
+	g.setColour(Colours::pink);
+	g.drawText ("This Is Programmed By M0ca(Unifox 9th)",getWidth()-300,getHeight()-30,300,30,Justification::bottomRight,true);
 	if(init_check == true)
 	{
 		g.setColour (Colours::white);
 		g.setFont(Font(16.0f,Font::bold));
-		g.drawSingleLineText(static_cast<String>(coin),120,115);
 		g.drawSingleLineText(static_cast<String>(capital),80,175);
+		g.drawSingleLineText(static_cast<String>(coin),120,115);
 		g.drawSingleLineText(static_cast<String>(revenue),90,205);
 		g.drawSingleLineText(static_cast<String>(sold_coin),100,145);
-		g.drawSingleLineText(static_cast<String>(debt),60,235);
+		g.drawSingleLineText(static_cast<String>(sales),60,235);
 		CheckStatus();
 	}
 }
@@ -202,10 +205,10 @@ void Casino::Menu()
 	price_label = new Label;	
 	addAndMakeVisible(price_label);
 	price_label->setFont(Font(24.0f,Font::bold));
-	price_label->setText("Buy Price\n5 coin per 1000won\n10 coin per 2000won\n15 coin per 3000won\n25 coin per 5000won \n\nSell Price\n6 coin per 1000won\n12 coin per 2000won\n18 coin per 3000won\n29 coin per 5000won",dontSendNotification);
-	price_label->setColour(Label::textColourId,Colours::white);
-	price_label->setJustificationType(Justification::centredRight);
-	price_label->setBounds(0,50,getWidth(),getHeight()-50);
+	price_label->setText("Buy Price : 5 coin per 1000won!\n5 coin : 1000won\n10 coin : 2000won\n15 coin : 3000won\n25 coin : 5000won\n\nSell Price : 6 coin per 1000won!\n6 coin : 1000won\n12 coin : 2000won\n18 coin : 3000won\n30 coin : 5000won",dontSendNotification);
+	price_label->setColour(Label::textColourId,Colours::pink);
+	price_label->setJustificationType(Justification::topRight);
+	price_label->setBounds(getWidth()/3,70,getWidth()-getWidth()/3,getHeight()-70);
 				
 	cur_coin_label = new Label; addAndMakeVisible(cur_coin_label);
 	cur_coin_label->setFont(Font(20.0f,Font::bold));
@@ -213,11 +216,6 @@ void Casino::Menu()
 	cur_coin_label->setColour(Label::textColourId,Colours::orange);
 	cur_coin_label->setJustificationType(Justification::left);
 	cur_coin_label->setBounds(0,100,120,20);
-		
-//	coin_text_label->setFont(Font(20.0f,Font::bold));
-//	coin_text_label->setColour(Label::textColourId,Colours::white);
-//	coin_text_label->setJustificationType(Justification::centredRight);
-//	coin_text_label->setBounds(120,100,30,30);
 
 	sold_coin_label = new Label;
 	addAndMakeVisible(sold_coin_label);
@@ -246,32 +244,33 @@ void Casino::Menu()
 	revenue_label->setJustificationType(Justification::left);
 	revenue_label->setBounds(0,190,120,20);
 
-	debt_label = new Label;
-	addAndMakeVisible(debt_label);
-	debt_label->setFont(Font(20.0f,Font::bold));
-	debt_label->setText("debt:",dontSendNotification);
-	debt_label->setColour(Label::textColourId,Colours::orange);
-	debt_label->setJustificationType(Justification::left);
-	debt_label->setBounds(0,220,120,20);
+	sales_label = new Label;
+	addAndMakeVisible(sales_label);
+	sales_label->setFont(Font(20.0f,Font::bold));
+	sales_label->setText("sales:",dontSendNotification);
+	sales_label->setColour(Label::textColourId,Colours::orange);
+	sales_label->setJustificationType(Justification::left);
+	sales_label->setBounds(0,220,120,20);
 	
 
 	//Buy coin!
 	buy_txtbtn = new TextButton;
 	addAndMakeVisible(buy_txtbtn);
-	//setColour(TextButton::buttonColourId,Colours::orange);
+	buy_txtbtn->setColour(TextButton::buttonColourId,Colours::red);
 	buy_txtbtn->setButtonText("Buy Coin");
 	buy_txtbtn->setBounds(0,getHeight()-30,70,30);
 	buy_txtbtn->addListener(this);
 
 	sell_txtbtn = new TextButton;
 	addAndMakeVisible(sell_txtbtn);
-	//setColour(TextButton::buttonColourId,Colours::orange);
+	sell_txtbtn->setColour(TextButton::buttonColourId,Colours::green);
 	sell_txtbtn->setButtonText("Sell Coin");
 	sell_txtbtn->setBounds(70,getHeight()-30,70,30);
 	sell_txtbtn->addListener(this);
 
 	collect_txtbtn = new TextButton;
 	addAndMakeVisible(collect_txtbtn);
+	collect_txtbtn->setColour(TextButton::buttonColourId,Colours::blue);
 	collect_txtbtn->setButtonText("Collect Coin");
 	collect_txtbtn->setBounds(140,getHeight()-30,70,30);
 	collect_txtbtn->addListener(this);
@@ -289,9 +288,9 @@ void Casino::Menu()
 	coin_menu->addItem("25 coin / 5000won",5);
 	coin_menu->addSectionHeading("Sell");
 	coin_menu->addItem("6 coin / 1000won",6);
-	coin_menu->addItem("11 coin / 2000won",7);
-	coin_menu->addItem("17 coin / 3000won",8);
-	coin_menu->addItem("29 coin / 5000won",9);
+	coin_menu->addItem("12 coin / 2000won",7);
+	coin_menu->addItem("18 coin / 3000won",8);
+	coin_menu->addItem("30 coin / 5000won",9);
 	coin_menu->setSelectedId(1);
 
 	coin_collector = new ComboBox("Leftover coin");
@@ -316,21 +315,25 @@ void Casino::BuyCoin()
 		case 2: 
 			coin -= 5;	
 			sold_coin += 5;
-			revenue += 1000;	
+			sales += 1000;	
+			revenue += 1000;
 			break;
 		case 3: 
 			coin -= 10;	
 			sold_coin += 10;
-			revenue += 2000;	
+			sales += 2000;	
+			revenue += 2000;
 			break;
 		case 4:
 			coin -= 15;
 			sold_coin += 15;
+			sales += 3000;
 			revenue += 3000;
 			break;
 		case 5:
 			coin -= 25;
 			sold_coin += 25;
+			sales += 5000;
 			revenue += 5000;
 			break;
 	}
@@ -343,25 +346,31 @@ void Casino::SellCoin()
 	//already filtered out coins
 	switch(coin_menu->getSelectedId()) // sell 6~9 
 	{
+		//자본 += 매출 - 수익
+		//수익 += 매출 - 원가
 		case 6: 
 			coin += 6;	
 			sold_coin -= 6;
-			revenue -= 1000;	
+			revenue -= 1000;
+			capital += sales - revenue;
 			break;
 		case 7: 
-			coin += 11;	
-			sold_coin -= 11;
-			revenue -= 2000;	
+			coin += 12;	
+			sold_coin -= 12;
+			revenue -= 2000;
+			capital += sales - revenue;
 			break;
 		case 8:
-			coin += 17;
-			sold_coin -= 17;
+			coin += 18;
+			sold_coin -= 18;
 			revenue -= 3000;
+			capital += sales - revenue;
 			break;
 		case 9:
-			coin += 29;
-			sold_coin -= 29;
+			coin += 30;
+			sold_coin -= 30;
 			revenue -= 5000;
+			capital += sales - revenue;
 			break;
 		}
 	coin_menu->setSelectedId(1);
@@ -370,31 +379,34 @@ void Casino::SellCoin()
 
 void Casino::CollectCoin()
 {
-	switch(coin_collector->getSelectedId())
+	if(sold_coin >= coin_collector->getSelectedId()-1)
 	{
-		case 2:
-			coin += 1;
-			sold_coin -= 1;
-			break;
-		case 3:
-			coin += 2;
-			sold_coin -= 2;
-			break;
-		case 4:
-			coin += 3;
-			sold_coin -= 3;	
-			break;
-		case 5:
-			coin += 4;
-			sold_coin -= 4;
-			break;
-		case 6:
-			coin += 5;
-			sold_coin -= 5;
-			break;
+		switch(coin_collector->getSelectedId())
+		{
+			case 2:
+				coin += 1;
+				sold_coin -= 1;
+				break;
+			case 3:
+				coin += 2;
+				sold_coin -= 2;
+				break;
+			case 4:
+				coin += 3;
+				sold_coin -= 3;	
+				break;
+			case 5:
+				coin += 4;
+				sold_coin -= 4;
+				break;
+			case 6:
+				coin += 5;
+				sold_coin -= 5;
+				break;
+		}
+		coin_collector->setSelectedId(1);
+		repaint();
 	}
-	coin_collector->setSelectedId(1);
-	repaint();
 }
 void Casino::CheckStatus()
 {
@@ -442,15 +454,15 @@ void Casino::CheckStatus()
 		}
 		else
 		{
-			if(sold_coin >= 29)
+			if(sold_coin >= 30)
 				coin_menu->setItemEnabled(9,true);
 			else
 				coin_menu->setItemEnabled(9,false);
-			if(sold_coin >= 17)
+			if(sold_coin >= 18)
 				coin_menu->setItemEnabled(8,true);
 			else 
 				coin_menu->setItemEnabled(8,false);
-			if(sold_coin >= 11)
+			if(sold_coin >= 12)
 				coin_menu->setItemEnabled(7,true);
 			else 
 				coin_menu->setItemEnabled(7,false);

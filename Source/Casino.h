@@ -37,7 +37,7 @@ private:
 	//Menu
 	Label *price_label;
 	Label *revenue_label; //수익
-	Label *debt_label;    //부채
+	Label *sales_label;    //부채
 	Label *cur_coin_label;
 	Label *sold_coin_label; 		
 	ComboBox *coin_menu;
@@ -50,7 +50,7 @@ private:
 	String cap_string;
 	int coin;
 	int sold_coin;
-	int debt;
+	int sales;
 	int revenue;
 	int capital;
 	bool init_check;
