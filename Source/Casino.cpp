@@ -12,11 +12,14 @@
 
 //==============================================================================
 Casino::Casino() 
-	:capital_label(nullptr),
+	:
+	//SetBase
+	capital_label(nullptr),
 	coin_label(nullptr),
 	cap_text_label(nullptr),
 	coin_text_label(nullptr),
 	check_init(nullptr),
+	//Menu
 	price_label(nullptr),
 	revenue_label(nullptr),
 	debt_label(nullptr),
@@ -24,6 +27,7 @@ Casino::Casino()
 	sold_coin_label(nullptr),
 	coin_menu(nullptr),
 	coin_collector(nullptr),
+	//BuyCoin
 	buy_txtbtn(nullptr),
 	sell_txtbtn(nullptr),
 	collect_txtbtn(nullptr),
@@ -32,7 +36,8 @@ Casino::Casino()
 	debt(0),
 	revenue(0),
 	capital(0),
-	init_check(false)
+	init_check(false),
+	listener_check(false)
 {
 	// 장부 확인
 	// 없으면 만들고 있으면 불러옴
@@ -42,35 +47,39 @@ Casino::Casino()
 
 Casino::~Casino()
 {
-	/* 나중에 종료직전에 
-	cap_text_label->removeListener(this);
-	coin_text_label->removeListener(this);
-	check_init->removeListener(this);
-	buy_txtbtn->removeListener(this);
-	sell_txtbtn->removeListener(this);
-	collect_txtbtn->removeListener(this);
-	coin_menu->removeListener(this);	
-	coin_collector->removeListener(this);
-	*/
+	if(listener_check == false)
+	{
+		cap_text_label->removeListener(this);
+		coin_text_label->removeListener(this);
+		check_init->removeListener(this);
+	}
+	else
+	{
+		buy_txtbtn->removeListener(this);
+		sell_txtbtn->removeListener(this);
+		collect_txtbtn->removeListener(this);
+	}
 	if(check_init != nullptr) delete check_init;
 	if(capital_label != nullptr) delete capital_label;
 	if(cap_text_label != nullptr) delete cap_text_label;
 	if(coin_label != nullptr) delete coin_label;
 	if(coin_text_label != nullptr) delete coin_text_label;
+
 	if(price_label != nullptr) delete price_label;
 	if(revenue_label != nullptr) delete revenue_label;
 	if(debt_label != nullptr) delete debt_label;
 	if(cur_coin_label != nullptr) delete cur_coin_label;
 	if(sold_coin_label != nullptr) delete sold_coin_label;
+
 	if(buy_txtbtn != nullptr) delete buy_txtbtn;
 	if(sell_txtbtn != nullptr) delete sell_txtbtn;
+	if(collect_txtbtn != nullptr) delete collect_txtbtn;
 	if(coin_menu != nullptr) delete coin_menu;
 	if(coin_collector != nullptr) delete coin_collector;
 }
 
 void Casino::paint (Graphics& g)
 {
-
     g.setFont (Font (76.0f));
     g.setColour (Colours::orange);
     g.drawText ("Unifox", getLocalBounds(), Justification::centredTop, true);
@@ -132,6 +141,7 @@ void Casino::buttonClicked(Button *button)
 		delete cap_text_label;
 		cap_text_label = nullptr;
 		init_check = true;
+		listener_check = true;
 		Menu();	
 	}	
 	else if(button == buy_txtbtn) BuyCoin();
