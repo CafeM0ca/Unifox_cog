@@ -78,7 +78,6 @@ Casino::~Casino()
 	if(collect_txtbtn != nullptr) delete collect_txtbtn;
 	if(coin_menu != nullptr) delete coin_menu;
 	if(coin_collector != nullptr) delete coin_collector;
-	if(collect_txtbtn != nullptr) delete collect_txtbtn;
 }
 
 void Casino::paint (Graphics& g)
