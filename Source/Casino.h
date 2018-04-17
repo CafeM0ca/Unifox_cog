@@ -27,7 +27,6 @@ public:
     void resized() override;
 	void labelTextChanged(Label *label) override;
 	void buttonClicked (Button *button) override;
-
 private:
 	//SetBase
 	Label *capital_label; //자본

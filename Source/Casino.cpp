@@ -158,39 +158,42 @@ void Casino::SetBase()
 	capital_label = new Label;
 	cap_text_label = new Label;
 	addAndMakeVisible(capital_label);
-	capital_label->setFont(Font(20.0f,Font::bold));
-	capital_label->setText("init capital: ",dontSendNotification);
-	capital_label->attachToComponent(cap_text_label,true);
-	capital_label->setColour(Label::textColourId,Colours::orange);
+	capital_label->setFont(Font(40.0f));
+	capital_label->setText("Set Capital: ",dontSendNotification);
+	capital_label->setColour(Label::textColourId,Colours::pink);
 	capital_label->setJustificationType(Justification::centred);
-	capital_label->setBounds(100,80,50,20);
+	capital_label->attachToComponent(cap_text_label,true);
 
 	addAndMakeVisible(cap_text_label); 
+	cap_text_label->setFont(Font(20.0f));
 	cap_text_label->setEditable(true);
 	cap_text_label->setColour (Label::backgroundColourId,Colours::orange);
 	cap_text_label->addListener(this);
-	cap_text_label->setBounds(100,80,50,20);	
+	cap_text_label->setBounds(300,140,100,30);	
 	
 	coin_label = new Label;
 	coin_text_label = new Label;
 	addAndMakeVisible(coin_label);
-	coin_label->setFont(Font(20.0f,Font::bold));
-	coin_label->setText("init coin: ",dontSendNotification);
+	coin_label->setFont(Font(40.0f));
+	coin_label->setText("Set Coin: ",dontSendNotification);
+	coin_label->setColour(Label::textColourId,Colours::pink);
+	coin_label->setJustificationType(Justification::centred);
 	coin_label->attachToComponent(coin_text_label,true);
-	coin_label->setColour(Label::textColourId,Colours::orange);
-	coin_label->setJustificationType(Justification::centredLeft);
-	coin_label->setBounds(100,110,50,20);
 
 	addAndMakeVisible(coin_text_label);
+	coin_text_label->setFont(Font(20.0f));
 	coin_text_label->setEditable(true);
 	coin_text_label->setColour (Label::backgroundColourId,Colours::orange);
 	coin_text_label->addListener(this);
-	coin_text_label->setBounds(100,110,50,20);	
+	coin_text_label->setBounds(300,180,100,30);	
 
-	check_init = new TextButton;
+	check_init = new TextButton("Complete Setting!");
 	addAndMakeVisible(check_init);
-	check_init->setButtonText("set up");
-	check_init->setBounds(0,135,100,50);
+	check_init->setToggleState(true,dontSendNotification);
+	check_init->setColour(TextButton::buttonColourId,Colours::white);
+	check_init->setColour(TextButton::buttonOnColourId,Colours::pink);
+	check_init->setColour(TextButton::textColourOnId,Colours::black);
+	check_init->setBounds(225,240,150,50);
 	check_init->addListener(this);
 }
 
@@ -475,3 +478,4 @@ int Casino::AutoSave()
 	}
 	*/
 }
+
