@@ -16,7 +16,7 @@
 /*
 */
 class Casino  : public Component ,
-				public Button::Listener,
+				private Button::Listener,
 				private Label::Listener
 {
 public:
@@ -39,7 +39,8 @@ private:
 	Label *price_label;
 	Label *revenue_label; //수익
 	Label *debt_label;    //부채
-	Label *cur_coin_label, *sold_coin_label; 		
+	Label *cur_coin_label;
+	Label *sold_coin_label; 		
 	ComboBox *coin_menu;
 	ComboBox *coin_collector;
 	//BuyCoin
@@ -54,6 +55,7 @@ private:
 	int revenue;
 	int capital;
 	bool init_check;
+	bool listener_check;
 	void Menu();	
 	void SetBase();
 	void BuyCoin();
